@@ -12,6 +12,7 @@ for (let citiesKey in cities) {
   if (enterCity == cities[citiesKey].name) {
     cityWasFound = true;
     cityTitle.innerHTML = `${enterCity} (${cities[citiesKey].country})`;
+    titleHead.innerHTML = cityName;
 
     break; //Loopen avslutas om stad hittas eller inte hittas. Om break inte används kommer den fortsätta och aldrig sluta.
   }
