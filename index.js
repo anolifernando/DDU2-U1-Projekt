@@ -54,43 +54,63 @@ cityObject.name = furthestCityName;
 console.log(cityObject);
 return cityObject;
 
-function cityDistancesClosest (cityName) {
+function cityDistancesClosest(cityName) {
   let cityKey = [];
   let cityNameId;
-  let cityObject = {}
-
+  let cityObject = {};
 
   let cityId;
   for (let i = 0; i < cities.length; i++) {
-      if (cities[i].name == cityName) {
-          cityId = cities[i].id;
-          break;
-      }
+    if (cities[i].name == cityName) {
+      cityId = cities[i].id;
+      break;
+    }
   }
   for (city in distances) {
-
-    if (cityId  == distances[city].city2 || cityId == distances[city].city1){
-        if (cityId == distances[city].city2) {
-            cityKey.push({
-                distance: distances[city].distance,
-                id: distances[city].city1
-            })
-        } else {
-            cityKey.push({
-                distance: distances[city].distance,
-                id: distances[city].city2
-            })
-        }
+    if (cityId == distances[city].city2 || cityId == distances[city].city1) {
+      if (cityId == distances[city].city2) {
+        cityKey.push({
+          distance: distances[city].distance,
+          id: distances[city].city1,
+        });
+      } else {
+        cityKey.push({
+          distance: distances[city].distance,
+          id: distances[city].city2,
+        });
+      }
     }
- 
+  }
+  let closestCity = cityKey[0].distance;
+
+  console.log(cityKey);
+
+  for (let i = 0; i < cityKey.length; i++) {
+    console.log(cities[i]);
+    if (cityKey[i].distance < closestCity) {
+      closestCity = cityKey[i].distance;
+      cityNameId = cityKey[i].id;
+      console.log(cityNameId);
+    }
+  }
+
+  let closestCityName;
+  for (let i = 0; i < cities.length; i++) {
+    if (cities[i].id == cityNameId) {
+      closestCityName = cities[i].name;
+    }
+  }
+
+  cityObject.distance = closestCity;
+  cityObject.id = cityNameId;
+  cityObject.name = closestCityName;
+
+  console.log(cityObject);
+  return cityObject;
 }
-let closestCity = cityKey[].distance;
-
-console.log(cityKey);
-
 
 // Recommended: constants with references to existing HTML-elements
-const titleHead = document.quertSelector("title");
+const title = document.quertSelector("title");
 const cityTitle = document.querySelector("h2");
 const cityUndertitle = document.querySelector("h3");
 const cityBox = document.quertSelector("#cities");
@@ -104,7 +124,7 @@ for (cityKey in cities) {
   if (enterCity == cities[cityKey].name) {
     cityWasFound = true;
     cityTitle.innerHTML = `${enterCity} (${cities[cityKey].country})`;
-    titleHead.innerHTML = cityName;
+    title.innerHTML = cityName;
 
     break; //Loopen avslutas om stad hittas eller inte hittas. Om break inte används kommer den fortsätta och aldrig sluta.
   }
@@ -113,7 +133,7 @@ for (cityKey in cities) {
 if (cityWasFound == false) {
   cityTitle.innerHTML += enterCity + "Finns inte i databasen";
   cityUndertitle.innerHTML = "";
-  titleHead.innerHTML = "Not fround";
+  title.innerHTML = "Not fround";
 }
 
 //Stad rutor
