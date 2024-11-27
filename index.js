@@ -1,10 +1,9 @@
 // Recommended: All functions declared here
+let cityId;
+let cityKey = [];
+let cityNameId;
+let cityObject = {};
 function cityDistancesFurthest(cityName) {
-  let cityKey = [];
-  let cityNameId;
-  let cityObject = {};
-
-  let cityId;
   for (let i = 0; i < cities.length; i++) {
     if (cities[i].name == cityName) {
       cityId = cities[i].id;
@@ -29,8 +28,7 @@ for (city in distances) {
   }
 }
 console.log(cityKey);
-
-let furthestCity = cityKey[0].distance;
+let furthestCity = null;
 
 for (let i = 0; i < cityKey.length; i++) {
   if (cityKey[i].distance > furthestCity) {
@@ -38,6 +36,7 @@ for (let i = 0; i < cityKey.length; i++) {
     cityNameId = cityKey[i].id;
     console.log(cityNameId);
   }
+  furthestCity = cityKey[0].distance;
 }
 
 let furthestCityName;
@@ -52,7 +51,7 @@ cityObject.id = cityNameId;
 cityObject.name = furthestCityName;
 
 console.log(cityObject);
-return cityObject;
+//return cityObject;
 
 function cityDistancesClosest(cityName) {
   let cityKey = [];
@@ -110,10 +109,10 @@ function cityDistancesClosest(cityName) {
 }
 
 // Recommended: constants with references to existing HTML-elements
-const title = document.quertSelector("title");
+const title = document.querySelector("title");
 const cityTitle = document.querySelector("h2");
 const cityUndertitle = document.querySelector("h3");
-const cityBox = document.quertSelector("#cities");
+const cityBox = document.querySelector("#cities");
 const cityTable = document.querySelector("#table");
 
 // Recommended: Ask for the city name and then the rest of the code
@@ -121,9 +120,9 @@ const cityName = prompt("Vilken stad?");
 let cityWasFound = false;
 
 for (cityKey in cities) {
-  if (enterCity == cities[cityKey].name) {
+  if (cityName == cities[cityKey].name) {
     cityWasFound = true;
-    cityTitle.innerHTML = `${enterCity} (${cities[cityKey].country})`;
+    cityTitle.innerHTML = `${cityName} (${cities[cityKey].country})`;
     title.innerHTML = cityName;
 
     break; //Loopen avslutas om stad hittas eller inte hittas. Om break inte används kommer den fortsätta och aldrig sluta.
@@ -131,14 +130,14 @@ for (cityKey in cities) {
 }
 
 if (cityWasFound == false) {
-  cityTitle.innerHTML += enterCity + "Finns inte i databasen";
+  cityTitle.innerHTML += cityName + "Finns inte i databasen";
   cityUndertitle.innerHTML = "";
   title.innerHTML = "Not fround";
 }
 
 //Stad rutor
-const cityClosest = cityDistancesClosest(enteredCity);
-const cityFurthest = cityDistancesFurthest(enteredCity);
+const cityClosest = cityDistancesClosest(cityName);
+const cityFurthest = cityDistancesFurthest(cityName);
 
 for (let i = 0; i < cities.length; i++) {
   let cityBoxP = document.createElement("p");
@@ -146,7 +145,7 @@ for (let i = 0; i < cities.length; i++) {
   cityBoxP.textContent = cities[i].name;
   cityBox.appendChild(cityBoxP);
 
-  if (enteredCity == cities[i].name) {
+  if (cityName == cities[i].name) {
     cityBoxP.classList.add("target");
   }
 
