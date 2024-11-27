@@ -28,6 +28,7 @@ for (city in distances) {
     }
   }
 }
+console.log(cityKey);
 
 // Recommended: constants with references to existing HTML-elements
 const titleHead = document.quertSelector("title");
