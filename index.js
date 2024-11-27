@@ -40,6 +40,55 @@ for (let i = 0; i < cityKey.length; i++) {
   }
 }
 
+let furthestCityName;
+for (let i = 0; i < cities.length; i++) {
+  if (cities[i].id == cityNameId) {
+    furthestCityName = cities[i].name;
+    console.log(furthestCityName);
+  }
+}
+cityObject.distance = furthestCity;
+cityObject.id = cityNameId;
+cityObject.name = furthestCityName;
+
+console.log(cityObject);
+return cityObject;
+
+function cityDistancesClosest (cityName) {
+  let cityKey = [];
+  let cityNameId;
+  let cityObject = {}
+
+
+  let cityId;
+  for (let i = 0; i < cities.length; i++) {
+      if (cities[i].name == cityName) {
+          cityId = cities[i].id;
+          break;
+      }
+  }
+  for (city in distances) {
+
+    if (cityId  == distances[city].city2 || cityId == distances[city].city1){
+        if (cityId == distances[city].city2) {
+            cityKey.push({
+                distance: distances[city].distance,
+                id: distances[city].city1
+            })
+        } else {
+            cityKey.push({
+                distance: distances[city].distance,
+                id: distances[city].city2
+            })
+        }
+    }
+ 
+}
+let closestCity = cityKey[].distance;
+
+console.log(cityKey);
+
+
 // Recommended: constants with references to existing HTML-elements
 const titleHead = document.quertSelector("title");
 const cityTitle = document.querySelector("h2");
