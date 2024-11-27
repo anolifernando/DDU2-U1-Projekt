@@ -30,6 +30,16 @@ for (city in distances) {
 }
 console.log(cityKey);
 
+let furthestCity = cityKey[0].distance;
+
+for (let i = 0; i < cityKey.length; i++) {
+  if (cityKey[i].distance > furthestCity) {
+    furthestCity = cityKey[i].distance;
+    cityNameId = cityKey[i].id;
+    console.log(cityNameId);
+  }
+}
+
 // Recommended: constants with references to existing HTML-elements
 const titleHead = document.quertSelector("title");
 const cityTitle = document.querySelector("h2");
