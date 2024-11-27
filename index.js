@@ -1,4 +1,33 @@
 // Recommended: All functions declared here
+function cityDistancesFurthest(cityName) {
+  let cityKey = [];
+  let cityNameId;
+  let cityObject = {};
+
+  let cityId;
+  for (let i = 0; i < cities.length; i++) {
+    if (cities[i].name == cityName) {
+      cityId = cities[i].id;
+      break;
+    }
+  }
+}
+
+for (city in distances) {
+  if (cityId == distances[city].city2 || cityId == distances[city].city1) {
+    if (cityId == distances[city].city2) {
+      cityKey.push({
+        distance: distances[city].distance,
+        id: distances[city].city1,
+      });
+    } else {
+      cityKey.push({
+        distance: distances[city].distance,
+        id: distances[city].city2,
+      });
+    }
+  }
+}
 
 // Recommended: constants with references to existing HTML-elements
 const titleHead = document.quertSelector("title");
@@ -11,10 +40,10 @@ const cityTable = document.querySelector("#table");
 const cityName = prompt("Vilken stad?");
 let cityWasFound = false;
 
-for (citiesKey in cities) {
-  if (enterCity == cities[citiesKey].name) {
+for (cityKey in cities) {
+  if (enterCity == cities[cityKey].name) {
     cityWasFound = true;
-    cityTitle.innerHTML = `${enterCity} (${cities[citiesKey].country})`;
+    cityTitle.innerHTML = `${enterCity} (${cities[cityKey].country})`;
     titleHead.innerHTML = cityName;
 
     break; //Loopen avslutas om stad hittas eller inte hittas. Om break inte används kommer den fortsätta och aldrig sluta.
